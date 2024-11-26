@@ -15,7 +15,6 @@ class _ControlSystemScreenState extends State<ControlSystemScreen> {
   String thresholdModeIcon = "temp_off";
   String timeModeIcon = "time_off";
 
-  // Animasi posisi background
   double _backgroundTopPosition = 100;
 
   @override
