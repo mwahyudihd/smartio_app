@@ -16,15 +16,14 @@ class _ControlSystemScreenState extends State<ControlSystemScreen> {
   String timeModeIcon = "time_off";
 
   // Animasi posisi background
-  double _backgroundTopPosition = 100; // Awalnya di bawah layar
+  double _backgroundTopPosition = 100;
 
   @override
   void initState() {
     super.initState();
-    // Mulai animasi setelah widget dirender
     Future.delayed(Duration(milliseconds: 300), () {
       setState(() {
-        _backgroundTopPosition = -100; // Pindahkan ke atas
+        _backgroundTopPosition = -100;
       });
     });
   }
@@ -33,10 +32,9 @@ class _ControlSystemScreenState extends State<ControlSystemScreen> {
   Widget build(BuildContext context) {
     return Stack(
         children: [
-          // AnimatedContainer untuk transisi background
           AnimatedPositioned(
-            duration: Duration(seconds: 1), // Durasi animasi
-            curve: Curves.easeInOut, // Gaya animasi
+            duration: Duration(seconds: 1),
+            curve: Curves.easeInOut,
             top: _backgroundTopPosition,
             left: 0,
             right: 0,
@@ -51,8 +49,8 @@ class _ControlSystemScreenState extends State<ControlSystemScreen> {
             ),
           ),
           AnimatedPositioned(
-            duration: Duration(seconds: 2), // Durasi animasi
-            curve: Curves.easeInOut, // Gaya animasi
+            duration: Duration(seconds: 2),
+            curve: Curves.easeInOut,
             top: _backgroundTopPosition,
             left: 0,
             right: 0,
@@ -67,8 +65,8 @@ class _ControlSystemScreenState extends State<ControlSystemScreen> {
             ),
           ),
           AnimatedPositioned(
-            duration: Duration(seconds: 3), // Durasi animasi
-            curve: Curves.easeInOut, // Gaya animasi
+            duration: Duration(seconds: 3),
+            curve: Curves.easeInOut,
             top: _backgroundTopPosition,
             left: 0,
             right: 0,
@@ -82,7 +80,6 @@ class _ControlSystemScreenState extends State<ControlSystemScreen> {
               ),
             ),
           ),
-          // Konten utama
           SingleChildScrollView(
             child: Column(
               children: [
