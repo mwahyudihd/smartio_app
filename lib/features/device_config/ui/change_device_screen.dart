@@ -13,12 +13,12 @@ class _ChangeDeviceScreenState extends State<ChangeDeviceScreen> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.amber,
+          color: Color.fromARGB(255, 173, 203, 110),
           
         ),
         title: Text("Change Device Form"),
         titleTextStyle: TextStyle(
-          color: Colors.amber
+          color: Color.fromARGB(255, 173, 203, 110)
         ),
         backgroundColor: Colors.brown,
       ),

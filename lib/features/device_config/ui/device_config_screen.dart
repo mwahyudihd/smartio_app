@@ -16,12 +16,16 @@ class _DeviceConfigScreenState extends State<DeviceConfigScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/gear-bg-transparent.png'),
+              fit: BoxFit.cover)),
       child: Column(
         children: [
           ListComponents("Change Device", "machine").render(() {
-            Navigator.of(context)
-                .push(AnimateRoute().createRoute(ChangeDeviceScreen()));
-          }),
+              Navigator.of(context)
+                  .push(AnimateRoute().createRoute(ChangeDeviceScreen()));
+            }),
           ListComponents("Info Device", "info").render(() {
             Navigator.of(context)
                 .push(AnimateRoute().createRoute(DeviceInfoScreen()));

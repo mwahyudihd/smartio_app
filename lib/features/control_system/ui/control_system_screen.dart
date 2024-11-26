@@ -15,92 +15,159 @@ class _ControlSystemScreenState extends State<ControlSystemScreen> {
   String thresholdModeIcon = "temp_off";
   String timeModeIcon = "time_off";
 
+  // Animasi posisi background
+  double _backgroundTopPosition = 100; // Awalnya di bawah layar
+
+  @override
+  void initState() {
+    super.initState();
+    // Mulai animasi setelah widget dirender
+    Future.delayed(Duration(milliseconds: 300), () {
+      setState(() {
+        _backgroundTopPosition = -100; // Pindahkan ke atas
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Container(
-          child: Column(
-            children: [
-              Margin(8.0, 30).render(),
-              Text(
-                "Watering Mode:",
-                style: GoogleFonts.poppins(
+    return Stack(
+        children: [
+          // AnimatedContainer untuk transisi background
+          AnimatedPositioned(
+            duration: Duration(seconds: 1), // Durasi animasi
+            curve: Curves.easeInOut, // Gaya animasi
+            top: _backgroundTopPosition,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/water-layer-1.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          AnimatedPositioned(
+            duration: Duration(seconds: 2), // Durasi animasi
+            curve: Curves.easeInOut, // Gaya animasi
+            top: _backgroundTopPosition,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/water-layer-3.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          AnimatedPositioned(
+            duration: Duration(seconds: 3), // Durasi animasi
+            curve: Curves.easeInOut, // Gaya animasi
+            top: _backgroundTopPosition,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/water-layer-2.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          // Konten utama
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 50),
+                Text(
+                  "Watering Mode:",
+                  style: GoogleFonts.poppins(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Colors.brown),
-              ),
-              Margin(8.0, 80).render(),
-              Container(
-                padding: EdgeInsets.all(15.0), // Padding di dalam container
-                decoration: BoxDecoration(
-                  border: Border.all(color: Color.fromARGB(255, 83, 230, 88), width: 2), // Border
-                  borderRadius: BorderRadius.circular(
-                      10), // Border radius untuk sudut melengkung
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromARGB(255, 83, 230, 88)
-                          .withOpacity(0.1), // Warna shadow dengan opacity
-                      spreadRadius: 2, // Penyebaran shadow
-                      blurRadius: 5, // Blur radius shadow
-                      offset: Offset(0, 2), // Posisi shadow
-                    ),
-                  ],
+                    color: Colors.brown,
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    // Button 1
-                    Buttons().listToggle(
-                      isThreshold,
-                      (value) {
-                        setState(() {
-                          isThreshold = value;
-                          isTimeBased = false;
-                          thresholdModeIcon =
-                              isThreshold ? "temp_on" : "temp_off";
-                          timeModeIcon = isTimeBased ? "time_on" : "time_off";
-                        });
-                      },
-                      "Threshold Mode",
-                      thresholdModeIcon,
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.all(15.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Color.fromARGB(255, 173, 203, 110),
+                      width: 2,
                     ),
-                    // Margin antar button
-                    Margin(8.0, 20).render(),
-                    // Button 2
-                    Buttons().listToggle(
-                      isTimeBased,
-                      (value) {
-                        setState(() {
-                          isTimeBased = value;
-                          isThreshold = false;
-                          thresholdModeIcon =
-                              isThreshold ? "temp_on" : "temp_off";
-                          timeModeIcon = isTimeBased ? "time_on" : "time_off";
-                        });
-                      },
-                      "Time Mode",
-                      timeModeIcon,
-                    ),
-                  ],
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(255, 173, 203, 110).withOpacity(0.1),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Buttons().listToggle(
+                        isThreshold,
+                        (value) {
+                          setState(() {
+                            isThreshold = value;
+                            isTimeBased = false;
+                            thresholdModeIcon =
+                                isThreshold ? "temp_on" : "temp_off";
+                            timeModeIcon = isTimeBased ? "time_on" : "time_off";
+                          });
+                        },
+                        "Threshold Mode",
+                        thresholdModeIcon,
+                      ),
+                      SizedBox(height: 10),
+                      Buttons().listToggle(
+                        isTimeBased,
+                        (value) {
+                          setState(() {
+                            isTimeBased = value;
+                            isThreshold = false;
+                            thresholdModeIcon =
+                                isThreshold ? "temp_on" : "temp_off";
+                            timeModeIcon = isTimeBased ? "time_on" : "time_off";
+                          });
+                        },
+                        "Time Mode",
+                        timeModeIcon,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Margin(10, 100.10).render(),
-              Text("Watering Now", style: GoogleFonts.poppins(
-                color: Colors.lightBlue[700],
-                fontWeight: FontWeight.bold,
-                fontSize: 12
-              ),),
-              Margin(1, 10.5).render(),
-              Center(
-                child: IconButton.filled(
-                    onPressed: (){},
+                SizedBox(height: 50),
+                Text(
+                  "Watering Now",
+                  style: GoogleFonts.poppins(
+                    color: Colors.lightBlue[700],
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Center(
+                  child: IconButton.filled(
+                    onPressed: () {},
                     iconSize: 48.9,
-                    icon: Icon(Icons.water_drop_outlined)),
-              )
-            ],
+                    icon: Icon(Icons.water_drop_outlined),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
+        ],
     );
   }
 }

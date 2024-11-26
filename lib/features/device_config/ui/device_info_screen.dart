@@ -13,11 +13,11 @@ class _DeviceInfoScreenState extends State<DeviceInfoScreen> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.amber,
+          color: Color.fromARGB(255, 173, 203, 110),
         ),
         title: Text("Device Information"),
         backgroundColor: Colors.brown,
-        titleTextStyle: TextStyle(color: Colors.amber),
+        titleTextStyle: TextStyle(color: Color.fromARGB(255, 173, 203, 110)),
       ),
       body: Container(
         child: Center(

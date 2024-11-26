@@ -14,12 +14,12 @@ class _TimeConfigScreenState extends State<TimeConfigScreen> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.amber,
+          color: Color.fromARGB(255, 173, 203, 110),
         ),
         backgroundColor: Colors.brown,
         title: Text("Time Mode Configuration"),
         titleTextStyle: TextStyle(
-          color: Colors.amber,
+          color: Color.fromARGB(255, 173, 203, 110),
         ),
       ),
       body: Container(
